@@ -1,8 +1,6 @@
 def copy_file(command: str) -> None:
     splitted_command = command.split(" ")
-    if len(splitted_command) != 3:
-        print("The command is not formatted correctly")
-    else:
+    if len(splitted_command) == 3:
         source_file_name = splitted_command[1]
         destination_file_name = splitted_command[2]
         if (source_file_name != destination_file_name
@@ -12,4 +10,4 @@ def copy_file(command: str) -> None:
                       open(destination_file_name , "w") as file_out):
                     file_out.write(file_in.read())
             except FileNotFoundError:
-                print(f"The file {source_file_name} does not exist")
+                return
