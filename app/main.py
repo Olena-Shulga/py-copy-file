@@ -1,13 +1,15 @@
 def copy_file(command: str) -> None:
-    if len(command.split()) != 3:
+    splitted_command = command.split(" ")
+    if len(splitted_command) != 3:
         print("The command is not formatted correctly")
     else:
-        file1 = command.split(" ")[1]
-        file1_copy = command.split(" ")[2]
-        if file1 != file1_copy and command.split(" ")[0] == "cp":
+        source_file_name = splitted_command[1]
+        destination_file_name = splitted_command[2]
+        if (source_file_name != destination_file_name
+                and splitted_command[0] == "cp"):
             try:
-                with (open(file1, "r") as file_in,
-                      open(file1_copy, "w") as file_out):
+                with (open(source_file_name , "r") as file_in,
+                      open(destination_file_name , "w") as file_out):
                     file_out.write(file_in.read())
             except FileNotFoundError:
-                print(f"The file {file1} does not exist")
+                print(f"The file {source_file_name } does not exist")
